@@ -19,14 +19,16 @@ public class FileDataProviderTest {
     @Test
     public void shouldGetBusRoutesFromFile() throws Exception {
         //given
-        List<BusStop> busRoute1 = asList(BusStop.of(0), BusStop.of(1), BusStop.of(2), BusStop.of(3), BusStop.of(4));
-        List<BusStop> busRoute2 = asList(BusStop.of(3), BusStop.of(1), BusStop.of(6), BusStop.of(5));
-        List<BusStop> busRoute3 = asList(BusStop.of(0), BusStop.of(6), BusStop.of(4));
-        List<List<BusStop>> busRoutes = asList(busRoute1, busRoute2, busRoute3);
-        Path path = Paths.get("src/test/resources/data.txt");
-        FileDataProvider fileDataProvider = new FileDataProvider(path);
+        final List<BusStop> busRoute1 = asList(BusStop.of(0), BusStop.of(1), BusStop.of(2), BusStop.of(3), BusStop.of(4));
+        final List<BusStop> busRoute2 = asList(BusStop.of(3), BusStop.of(1), BusStop.of(6), BusStop.of(5));
+        final List<BusStop> busRoute3 = asList(BusStop.of(0), BusStop.of(6), BusStop.of(4));
+        final List<List<BusStop>> busRoutes = asList(busRoute1, busRoute2, busRoute3);
+        final Path path = Paths.get("src/test/resources/data.txt");
+        final FileDataProvider fileDataProvider = new FileDataProvider(path);
+
         //when
-        List<List<BusStop>> busRoutesFromFile = fileDataProvider.fetch();
+        final List<List<BusStop>> busRoutesFromFile = fileDataProvider.fetch();
+
         //then
         assertThat(busRoutesFromFile, equalTo(busRoutes));
     }

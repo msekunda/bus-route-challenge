@@ -20,7 +20,7 @@ public class BusRoutesController {
 
     @RequestMapping("/rest/provider/goeurobus/direct/{departure}/{arrival}")
     public BusRouteResponse checkDirectConnection(@PathVariable("departure") Integer departure, @PathVariable("arrival") Integer arrival) {
-        boolean isDirectConnection = busRoutesService.hasDirectConnection(BusStop.of(departure), BusStop.of(arrival));
+        final boolean isDirectConnection = busRoutesService.hasDirectConnection(BusStop.of(departure), BusStop.of(arrival));
         return new BusRouteResponse(departure, arrival, isDirectConnection);
     }
 }

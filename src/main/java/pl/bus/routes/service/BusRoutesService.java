@@ -30,6 +30,4 @@ public class BusRoutesService {
     private boolean matchBusStops(List<BusStop> busStops, BusStop departure, BusStop arrival) {
         return busStops.contains(arrival) && busStops.contains(departure);
     }
-
-
 }

@@ -9,9 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -27,10 +27,10 @@ public class FileDataProvider implements DataProvider {
 
     @Override
     public List<List<BusStop>> fetch() throws IOException {
-        ArrayList<List<BusStop>> busStops = Files.lines(path)
+        final ArrayList<List<BusStop>> busStops = Files.lines(path)
                                                  .skip(1)
                                                  .map(this::toBusRoute)
-                                                 .collect(Collectors.toCollection(ArrayList::new));
+                                                 .collect(toCollection(ArrayList::new));
         return busStops;
     }
 
@@ -43,6 +43,4 @@ public class FileDataProvider implements DataProvider {
                                                  .collect(toList());
         return busStopsList;
     }
-
-
 }

@@ -18,15 +18,15 @@ public class BusRoutesTest {
     @Test
     public void shouldFindDirectConnection() throws Exception {
         //given
-        List<BusStop> busRoute1 = asList(BusStop.of(0), BusStop.of(1), BusStop.of(2), BusStop.of(3), BusStop.of(4));
-        List<BusStop> busRoute2 = asList(BusStop.of(3), BusStop.of(1), BusStop.of(6), BusStop.of(5));
-        List<BusStop> busRoute3 = asList(BusStop.of(0), BusStop.of(6), BusStop.of(4));
-        DataProvider dataProvider = mock(DataProvider.class);
+        final List<BusStop> busRoute1 = asList(BusStop.of(0), BusStop.of(1), BusStop.of(2), BusStop.of(3), BusStop.of(4));
+        final List<BusStop> busRoute2 = asList(BusStop.of(3), BusStop.of(1), BusStop.of(6), BusStop.of(5));
+        final List<BusStop> busRoute3 = asList(BusStop.of(0), BusStop.of(6), BusStop.of(4));
+        final DataProvider dataProvider = mock(DataProvider.class);
         when(dataProvider.fetch()).thenReturn(asList(busRoute1, busRoute2, busRoute3));
-        BusRoutesService busRoutes = new BusRoutesService(dataProvider);
+        final BusRoutesService busRoutes = new BusRoutesService(dataProvider);
 
         //when
-        boolean hasDirectConnection = busRoutes.hasDirectConnection(BusStop.of(3), BusStop.of(6));
+        final boolean hasDirectConnection = busRoutes.hasDirectConnection(BusStop.of(3), BusStop.of(6));
 
         //then
         assertThat(hasDirectConnection, is(true));

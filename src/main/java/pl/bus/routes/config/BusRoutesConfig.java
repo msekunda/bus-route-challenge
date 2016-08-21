@@ -18,5 +18,4 @@ public class BusRoutesConfig {
     public Path getPath() throws IOException {
         return Paths.get(filePath);
     }
-
 }
