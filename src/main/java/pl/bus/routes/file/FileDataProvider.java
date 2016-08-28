@@ -27,11 +27,13 @@ public class FileDataProvider implements DataProvider {
 
     @Override
     public List<List<BusStop>> fetch() throws IOException {
-        final ArrayList<List<BusStop>> busStops = Files.lines(path)
-                                                 .skip(1)
-                                                 .map(this::toBusRoute)
-                                                 .collect(toCollection(ArrayList::new));
-        return busStops;
+        try (Stream<String> lines = Files.lines(path)) {
+            final ArrayList<List<BusStop>> busStops = lines
+                    .skip(1)
+                    .map(this::toBusRoute)
+                    .collect(toCollection(ArrayList::new));
+            return busStops;
+        }
     }
 
     private List<BusStop> toBusRoute(String line) {
